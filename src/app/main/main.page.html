@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Text In Picture
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Text In Picture</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Message</ion-label>
+      <ion-textarea #text placeholder="write your message here" autoGrow autofocus rows="1" (keypress)="updateText()" (keyup)="updateText()" (change)="updateText()"></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <div style="text-align: center;">
+    <ion-button color="tertiary" (click)="updateText(); download()">
+      <ion-icon name="download-outline"></ion-icon>&nbsp;Download
+    </ion-button>
+  </div>
+  <ion-item>
+    <ion-label>Font Size</ion-label>
+    <ion-item class="side-input">
+      <ion-button  (click)="fontSize = fontSize - 1; updateText();" color="transparent"><ion-icon name="remove-outline"></ion-icon></ion-button>
+      <ion-input [value]="fontSize" (keypress)="updateFontSize($event.target)" (keyup)="updateFontSize($event.target)" (change)="updateFontSize($event.target)"></ion-input>
+      <ion-button (click)="fontSize = fontSize + 1; updateText();" color="transparent"><ion-icon name="add-outline"></ion-icon></ion-button>
+    </ion-item>
+  </ion-item>
+  <ion-item>
+    <ion-label>Font Color</ion-label>
+    <ion-input #color [value]="fontColor" type="color" class="side-input" (ionChange)="fontColor = getValue($event.target); updateText();">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Font Align</ion-label>
+    <ion-select [value]="fontAlign" (ionChange)="fontAlign = getValue($event.target); updateText()">
+      <ion-select-option value="left">Left</ion-select-option>
+      <ion-select-option value="center">Center</ion-select-option>
+      <ion-select-option value="right">Right</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <div class="preview">
+    <div style="text-align: center;">
+      <ion-badge color="success">Preview</ion-badge>
+    </div>
+    <canvas #canvas class="canvas"></canvas>
+  </div>
+</ion-content>
