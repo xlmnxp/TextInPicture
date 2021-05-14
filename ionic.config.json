@@ -1,0 +1,8 @@
+{
+  "name": "Text In Picture",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "ca413212"
+}
